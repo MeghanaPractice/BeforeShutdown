@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "beforeshutdown"
+version = "0.1.0"
+description = ""
+authors = ["MeghanaPractice <meghana.h.m.practice@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11,<3.14"
+pyinstaller = "^6.11.1"
+pillow = "^11.0.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
