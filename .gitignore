@@ -2,3 +2,4 @@ venv/
 poetry.loc
 dist/
 build/
+before_shutdown/__pycache__/
