@@ -1,2 +1,8 @@
 [DEFAULT]
 RECALLFOLDER= %%USERPROFILE%%\Desktop\recall\
+SEND_MAIL = TRUE
+MAIL_FROM= testtestemailer@gmail.com
+MAIL_FROM_PASSWORD=wciu ytnf pzrr ligq
+MAIL_TO= meghana.h.m.practice@gmail.com
+SMTP_HOST=smtp.gmail.com
+SMTP_PORT=587
