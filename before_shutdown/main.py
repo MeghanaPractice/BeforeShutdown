@@ -7,6 +7,7 @@ import smtplib
 from email.message import EmailMessage
 import tkinter as tk
 from tkinter import messagebox
+from tkinter import filedialog
 
 base_path = os.path.dirname(os.path.abspath(__file__))
 config_path = os.path.join(base_path, 'config.txt')
@@ -95,14 +96,20 @@ def send_mail(file):
         messagebox.showerror("Error", "Email configuration is incomplete!")
 
 
-
+def send_selected_file():
+    file = filedialog.askopenfilename(initialdir=RECALL_FOLDER, title="Select a file",filetypes=[("Text files","*.txt")])
+    if file:
+        send_mail(file)
+    else:
+        messagebox.showwarning("No File", "No file selected!")
 
 def mail_prompter(todaynote):
     root = tk.Tk()
     root.title("Mail sender")
-    send_button = tk.Button(root, text="Save and send?", command=lambda: send_mail(todaynote), width=30)
+    send_button = tk.Button(root, text="Save and send today's note?", command=lambda: send_mail(todaynote), width=40,)
+    send_selected_button = tk.Button(root, text="Send Selected File", command=send_selected_file, width=40,)
+    send_selected_button.pack(pady=5)
     send_button.pack(pady=5)
-    
     root.mainloop()
     
 def main():
