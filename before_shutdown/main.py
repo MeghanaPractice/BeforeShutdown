@@ -47,7 +47,7 @@ def close_everything_else():
 def open_note():
     todaynote = RECALL_FOLDER+f'{time.strftime("%d_%m_%Y")}.txt'
     if(not os.path.exists(todaynote)):
-       file = open(todaynote,mode='x+')
+       file = open(todaynote,mode='x+',encoding="utf-8")
        shutil.copy(src=os.path.join(base_path, 'template.txt'),dst=todaynote)
        file.write('Date: '+time.strftime("%d.%m.%Y")+'\n')
        file.close()
@@ -80,7 +80,7 @@ def send_mail(file):
             msg['Subject'] = 'Notes for the day: '+time.strftime("%d.%m.%Y")
             msg['From'] = sender
             msg['To'] = reciever
-            with open(file, 'r+') as fp:
+            with open(file, 'r+', encoding="utf-8", errors="replace") as fp:
                 notes_data = fp.read()
                 msg.add_attachment(notes_data,subtype='plain',filename=os.path.basename(file))
             
