@@ -41,10 +41,14 @@ jobs:
           pip install pillow
           pip install pyinstaller
           pyinstaller BeforeShutdown.spec
+          
       # Zip build output
-      - name: Zip React build output
-        run: |
-         zip -r BeforeShutdown-${{ github.ref_name }}.zip build -x "dist/*"
+      - name: Archive Release
+        uses: thedoctor0/zip-release@0.7.5
+        with:
+         type: 'zip'
+         filename: "BeforeShutdown-${{ github.ref_name }}.zip"
+         path: 'dist'
  
       # Upload release asset
       - name: Upload release asset
