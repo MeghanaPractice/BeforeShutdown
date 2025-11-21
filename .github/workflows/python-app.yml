@@ -1,0 +1,47 @@
+# This workflow will install Python dependencies, run tests and lint with a single version of Python
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-python
+
+name: Python application
+
+on:
+  release:
+    types: [created] #not on push, since that will be a bit much
+
+permissions:
+  contents: read
+
+jobs:
+  pyinstaller-build:
+    runs-on: windows-latest
+    steps:
+      - name: Install poetry
+        uses: abatilo/actions-poetry@v4
+        
+      - uses: actions/cache@v3
+        name: Define a cache for the virtual environment based on the dependencies lock file
+        with:
+          path: ./.venv
+          key: venv-${{ hashFiles('poetry.lock') }}
+          
+      - name: Install the project dependencies
+        run: poetry install
+        
+      - name: Create Executable
+        uses: sayyid5416/pyinstaller@v1
+        with:
+          python_ver: '3.6'
+          spec: 'BeforeShutdown.spec'
+          upload_exe_with_name: 'My executable'
+          options:  --name "BeforeShutdown", --windowed
+      # Zip build output
+      - name: Zip React build output
+        run: |
+         zip -r BeforeShutdown-${{ github.ref_name }}.zip build -x "dist/*"
+ 
+      # Upload release asset
+      - name: Upload release asset
+        uses: softprops/action-gh-release@v2
+        with:
+          files: BeforeShutdown-${{ github.ref_name }}.zip
+        env:
+         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
