@@ -38,8 +38,8 @@ jobs:
         uses: sayyid5416/pyinstaller@v1
         with:
           spec: 'BeforeShutdown.spec'
-          upload_exe_with_name: 'My executable'
-          options:  --name "BeforeShutdown", --windowed, --no-root
+          upload_exe_with_name: 'BeforeShutdown'
+          options:  --name "BeforeShutdown", --windowed, --no-root, --icon=before_shutdown/shutdown.ico
       # Zip build output
       - name: Zip React build output
         run: |
