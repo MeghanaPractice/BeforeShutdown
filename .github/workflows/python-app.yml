@@ -39,7 +39,7 @@ jobs:
       - name: Create Executable
         run: | 
           pip install pyinstaller
-          pyinstaller BeforeShutdown.spec --name "BeforeShutdown" --windowed --icon=before_shutdown/shutdown.ico
+          pyinstaller BeforeShutdown.spec --name "BeforeShutdown"
       # Zip build output
       - name: Zip React build output
         run: |
