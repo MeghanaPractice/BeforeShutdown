@@ -33,6 +33,11 @@ jobs:
 
       - name: Install the project dependencies
         run: poetry install
+
+      - name: Pillow Issues solve
+        run: |
+            pip uninstall PIL 
+            pip install pillow --force-reinstall --no-cache
         
       - name: Create Executable
         uses: sayyid5416/pyinstaller@v1
