@@ -8,7 +8,7 @@ on:
     types: [created] #not on push, since that will be a bit much
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   pyinstaller-build:
