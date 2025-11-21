@@ -33,11 +33,12 @@ jobs:
 
       - name: Install the project dependencies
         run: | 
-         poetry add Pillow
          poetry install
         
       - name: Create Executable
         run: | 
+          pip uninstall pillow
+          pip install pillow
           pip install pyinstaller
           pyinstaller BeforeShutdown.spec
       # Zip build output
